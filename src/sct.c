@@ -9,8 +9,9 @@ sct_set_color_temp (signed temp) {
     XRRScreenResources * res = XRRGetScreenResourcesCurrent(dpy, root);
     double ratio = temp % 500 / 500.0;
 
-    #define AVG(c) whitepoints[temp / 500].c * (1 - ratio) + \
-                   whitepoints[temp / 500 + 1].c * ratio
+    signed tmp = temp / 500;
+    #define AVG(c) whitepoints[tmp].c     * (1 - ratio) + \
+                   whitepoints[tmp + 1].c * ratio
 
     for ( signed c = 0; c < res->ncrtc; ++ c ) {
         RRCrtc crtcxid = res->crtcs[c];
