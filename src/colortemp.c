@@ -1,4 +1,4 @@
-#include "sct.h"
+#include "colortemp.h"
 
 void
 sct_set_color_temp (signed temp) {

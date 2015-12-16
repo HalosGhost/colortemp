@@ -1,5 +1,5 @@
-sct
-===
+colortemp
+=========
 
 This is my personal fork and copy of Tedu's `sct <http://www.tedunangst.com/flak/post/sct-set-color-temperature>`_.
 
