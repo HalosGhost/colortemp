@@ -1,6 +1,7 @@
+#pragma once
+
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/Xrender.h>
-#include <stdlib.h>
 
 /* cribbed from redshift, but truncated with 500K steps */
 static const struct { double r, g, b; } whitepoints [] = {
