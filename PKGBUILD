@@ -27,5 +27,5 @@ build () {
 
 package () {
     cd colortemp
-    install -Dm755 src/colortempd "${pkgdir}"/usr/bin/colortempd
+    make DESTDIR="$pkgdir" PREFIX="/bin" install
 }
