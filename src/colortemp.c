@@ -1,7 +1,7 @@
 #include "colortemp.h"
 
 void
-sct_set_color_temp (signed temp) {
+colortemp_set (signed temp) {
 
     Display * dpy = XOpenDisplay(NULL);
     signed screen = DefaultScreen(dpy);

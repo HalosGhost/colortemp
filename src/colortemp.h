@@ -27,4 +27,4 @@ static const struct { double r, g, b; } whitepoints [] = {
     { 0.77442176, 0.85453121, 1.00000000 }
 };
 
-void sct_set_color_temp (signed);
+void colortemp_set (signed);
