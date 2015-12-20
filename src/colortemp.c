@@ -1,8 +1,9 @@
 #include "colortemp.h"
 
 void
-colortemp_set (signed temp) {
+colortemp_set (signed temperature) {
 
+    signed temp = temperature - 1000;
     Display * dpy = XOpenDisplay(NULL);
     signed screen = DefaultScreen(dpy);
     Window root = RootWindow(dpy, screen);
