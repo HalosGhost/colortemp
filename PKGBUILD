@@ -27,5 +27,5 @@ build () {
 
 package () {
     cd colortemp
-    make DESTDIR="$pkgdir" PREFIX="/bin" install
+    make DESTDIR="$pkgdir" PREFIX="/usr" install
 }
