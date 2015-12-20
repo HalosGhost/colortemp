@@ -15,10 +15,12 @@ main (signed argc, char * argv []) {
             case 'h': fputs(usage, stdout); break;
             case 't': {
                 signed temp = 0;
-                sscanf(optarg, "%d", &temp);
-                temp = temp < 1000 || temp > 10500 ? 6500 : temp;
+                if ( sscanf(optarg, "%d", &temp) == 0 ) {
+                    fputs("colortempd: Failed to read temperature\n", stderr);
+                    return EXIT_FAILURE;
+                } temp = temp < 1000 || temp > 10500 ? 6500 : temp;
                 colortemp_set(temp - 1000);
-            }
+            } break;
 
             default: fputs(usage, stderr); return EXIT_FAILURE;
         }
