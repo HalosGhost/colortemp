@@ -1,0 +1,13 @@
+#compdef colortempd
+
+# copy this file to /usr/share/zsh/site-functions/_colortemp
+
+typeset -A opt_args
+setopt extendedglob
+
+# daemon options
+_colortempd=(
+    {-h,--help}'[List help and exit]'
+    {-r,--reset-temp}'[Reset color temperature to the default]'
+    {-t,--set-temp}'[Set screen color temperature to TEMP]'
+)
