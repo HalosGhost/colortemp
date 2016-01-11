@@ -5,11 +5,13 @@
 typeset -A opt_args
 setopt extendedglob
 
+_temps=({1..10}{0,5}00} 11000)
+
 # daemon options
 _daemon=(
     {-h,--help}'[List help and exit]'
     {-r,--reset-temp}'[Reset color temperature to the default]'
-    {-t,--set-temp}'[Set screen color temperature to TEMP]'
+    {-t,--set-temp}"[Set screen color temperature to TEMP]:TEMP:($_temps)"
 )
 
 _colortempd () {
