@@ -16,7 +16,7 @@ main (signed argc, char * argv []) {
             case 'r': colortemp_set(6500);  break;
             case 't': {
                 signed temp = 0;
-                if ( sscanf(optarg, "%d", &temp) == 0 ) {
+                if ( !sscanf(optarg, "%d", &temp) ) {
                     fputs("colortempd: Failed to read temperature\n", stderr);
                     return EXIT_FAILURE;
                 }
