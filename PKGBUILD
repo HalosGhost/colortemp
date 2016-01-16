@@ -22,7 +22,7 @@ pkgver () {
 
 build () {
     cd colortemp
-    tup upd
+    make
 }
 
 package () {
