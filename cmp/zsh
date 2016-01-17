@@ -5,7 +5,7 @@
 typeset -A opt_args
 setopt extendedglob
 
-_temps=({1..10}{0,5}00 11000)
+_temps=({1..10}{0,5}00)
 
 # daemon options
 _daemon=(
