@@ -1,6 +1,6 @@
 # Maintainer: Sam Stuewe <halosghost at archlinux dot info>
 
-pkgname=colortemp-git
+pkgname=colortemp-oneshot-git
 pkgver=0.r1.4d692cd
 pkgrel=1
 
@@ -8,11 +8,12 @@ pkgdesc="A small tool to set a screen's color temperature"
 url='https://github.com/HalosGhost/colortemp'
 arch=('i686' 'x86_64')
 license=('GPL3')
+conflicts=('colortemp-git' 'colortemp')
 
 depends=('xorg-server' 'libxrandr')
 makedepends=('git' 'tup' 'clang')
 
-source=('git+https://github.com/HalosGhost/colortemp.git')
+source=('git+https://github.com/HalosGhost/colortemp.git#branch=one-shot')
 sha256sums=('SKIP')
 
 pkgver () {
