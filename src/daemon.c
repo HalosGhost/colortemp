@@ -12,6 +12,7 @@ main (signed argc, char * argv []) {
           c != -1;       c = getopt_long(argc, argv, vos, os, &oi)  ) {
 
         switch ( c ) {
+            case 'd': return colortemp_daemon();
             case 'h': fputs(usage, stdout); break;
             case 'r': colortemp_set(6500);  break;
             case 't': {
@@ -29,4 +30,18 @@ main (signed argc, char * argv []) {
             default: fputs(usage, stderr); return EXIT_FAILURE;
         }
     } return EXIT_SUCCESS;
+}
+
+signed
+colortemp_daemon (void) {
+
+    pid_t pid = fork(), sid;
+    if ( pid < 0 ) {
+        return EXIT_FAILURE;
+    } else {
+        exit(EXIT_SUCCESS);
+    }
+
+    umask(0);
+    return EXIT_SUCCESS;
 }
