@@ -9,7 +9,7 @@ all:
 	@tup upd
 
 clean:
-	@rm -r dist
+	@rm -rf -- dist cov-int colortemp.tgz make.sh
 
 cov-build: clean
 	@tup generate make.sh
