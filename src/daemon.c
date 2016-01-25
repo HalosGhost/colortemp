@@ -35,13 +35,14 @@ main (signed argc, char * argv []) {
 signed
 colortemp_daemon (void) {
 
-    pid_t pid = fork(), sid;
+    pid_t pid = fork();
     if ( pid < 0 ) {
         return EXIT_FAILURE;
-    } else {
+    } else if ( pid > 0 ) {
         exit(EXIT_SUCCESS);
     }
 
     umask(0);
+    for ( ; ; ) { sleep(10); }
     return EXIT_SUCCESS;
 }
