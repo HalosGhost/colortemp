@@ -2,7 +2,7 @@ PREFIX ?= /usr/local
 ZSHDIR ?= $(DESTDIR)$(PREFIX)/share/zsh
 BINDIR ?= $(DESTDIR)$(PREFIX)/bin
 
-.PHONY: all clean install uninstall
+.PHONY: all clean cov-build install uninstall
 
 all:
 	@mkdir -p dist
@@ -10,6 +10,12 @@ all:
 
 clean:
 	@rm -r dist
+
+cov-build: clean
+	@tup generate make.sh
+	@mkdir -p ./dist
+	@cov-build --dir cov-int ./make.sh
+	@tar czvf colortemp.tgz cov-int
 
 install:
 	@install -Dm755 dist/colortempd $(BINDIR)/colortempd
