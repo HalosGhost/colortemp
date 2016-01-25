@@ -43,6 +43,12 @@ colortemp_daemon (void) {
     }
 
     umask(0);
+
+    pid_t sid = 0;
+    if ( (sid = setsid()) < 0 ) { exit(EXIT_FAILURE); }
+
+    close(STDIN_FILENO); close(STDOUT_FILENO); close(STDERR_FILENO);
+
     for ( ; ; ) { sleep(10); }
     return EXIT_SUCCESS;
 }
