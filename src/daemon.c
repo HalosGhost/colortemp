@@ -48,7 +48,10 @@ colortemp_daemon (void) {
     syslog(LOG_INFO, "Started colortempd\n");
 
     pid_t sid = 0;
-    if ( (sid = setsid()) < 0 ) { exit(EXIT_FAILURE); }
+    if ( (sid = setsid()) < 0 ) {
+        syslog(LOG_ERR, "Failed to create new process group session\n");
+        exit(EXIT_FAILURE);
+    }
 
     close(STDIN_FILENO); close(STDOUT_FILENO); close(STDERR_FILENO);
 
