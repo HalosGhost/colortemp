@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/Xrender.h>
 #include <stdint.h>
@@ -19,8 +18,6 @@ getGfromTemp (unsigned short ncolor);
 double
 getBfromTemp (unsigned short ncolor);
 
-// valid range: [1000..15000]
-// effective range: [1000,1100..15000]
 struct RGB
 getRGBfromTemp (unsigned short color);
 

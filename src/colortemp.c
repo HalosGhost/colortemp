@@ -27,6 +27,8 @@ getBfromTemp (unsigned short ncolor) {
 
 // valid range: [1000..15000]
 // effective range: [1000,1100..15000]
+// original algorithm:
+// http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
 struct RGB
 getRGBfromTemp (unsigned short color) {
     unsigned short ncolor = (color < 1000  ? 1000  :
