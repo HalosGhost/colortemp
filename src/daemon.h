@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <syslog.h>
 #include "colortemp.h"
 
 static const char vos [] = "hrt:";
