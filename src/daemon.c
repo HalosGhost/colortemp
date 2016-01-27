@@ -35,17 +35,19 @@ main (signed argc, char * argv []) {
 signed
 colortemp_daemon (void) {
 
+    openlog(NULL, LOG_CONS, LOG_USER);
+    syslog(LOG_INFO, "Started colortempd\n");
+
     pid_t pid = fork();
     if ( pid < 0 ) {
+        syslog(LOG_ERR, "Failed to fork off\n");
+        closelog();
         return EXIT_FAILURE;
     } else if ( pid > 0 ) {
         exit(EXIT_SUCCESS);
     }
 
     umask(0);
-
-    openlog(NULL, LOG_CONS, LOG_USER);
-    syslog(LOG_INFO, "Started colortempd\n");
 
     pid_t sid = 0;
     if ( (sid = setsid()) < 0 ) {
@@ -56,6 +58,5 @@ colortemp_daemon (void) {
     close(STDIN_FILENO); close(STDOUT_FILENO); close(STDERR_FILENO);
 
     closelog();
-
     return EXIT_SUCCESS;
 }
