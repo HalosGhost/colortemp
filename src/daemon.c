@@ -36,7 +36,7 @@ signed
 colortemp_daemon (void) {
 
     openlog(NULL, LOG_CONS, LOG_USER);
-    syslog(LOG_INFO, "Started colortempd\n");
+    syslog(LOG_INFO, "Started\n");
 
     pid_t pid = fork();
     if ( pid < 0 ) {
@@ -57,6 +57,7 @@ colortemp_daemon (void) {
 
     close(STDIN_FILENO); close(STDOUT_FILENO); close(STDERR_FILENO);
 
+    syslog(LOG_INFO, "Shutting down\n");
     closelog();
     return EXIT_SUCCESS;
 }
