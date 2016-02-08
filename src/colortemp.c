@@ -60,5 +60,5 @@ colortemp_set (unsigned short temp) {
             crtc_gamma->green[i] = (unsigned short )(g * (rgb.g / 255.0));
             crtc_gamma->blue[i]  = (unsigned short )(g * (rgb.b / 255.0));
         } XRRSetCrtcGamma(dpy, crtcxid, crtc_gamma); XFree(crtc_gamma);
-    }
+    } XCloseDisplay(dpy);
 }
