@@ -57,8 +57,7 @@ colortemp_daemon (void) {
 
     close(STDIN_FILENO); close(STDOUT_FILENO); close(STDERR_FILENO);
 
-    unsigned short dd_temp = 1900, noon_temp = 6600,
-                   temp_step = 100,
+    unsigned short dd_temp = 1900, noon_temp = 6600, temp_step = 100,
                    f_step = (noon_temp - dd_temp) / temp_step, m_step = 74;
 
     unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
