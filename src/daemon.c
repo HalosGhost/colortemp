@@ -57,6 +57,25 @@ colortemp_daemon (void) {
 
     close(STDIN_FILENO); close(STDOUT_FILENO); close(STDERR_FILENO);
 
+    unsigned short dd_temp = 1900, noon_temp = 6600,
+                   f_step = (noon_temp - dd_temp) / 100, m_step = 74;
+
+    unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
+             n_step = m_step == 0 || f_step < m_step ? f_step : m_step,
+             ttslp = (noon - dawn) / n_step;
+
+    for ( unsigned short t = dd_temp; t <= noon_temp; t += 100 ) {
+        colortemp_set(t);
+        syslog(LOG_INFO, "Set color temperature to %hu\n", t);
+        sleep(ttslp);
+    }
+
+    for ( unsigned short t = noon_temp; t >= dd_temp; t -= 100 ) {
+        colortemp_set(t);
+        syslog(LOG_INFO, "Set color temperature to %hu\n", t);
+        sleep(ttslp);
+    }
+
     syslog(LOG_INFO, "Shutting down\n");
     closelog();
     return EXIT_SUCCESS;
