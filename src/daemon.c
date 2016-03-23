@@ -58,10 +58,10 @@ colortemp_daemon (void) {
     close(STDIN_FILENO); close(STDOUT_FILENO); close(STDERR_FILENO);
 
     unsigned short dd_temp = 1900, noon_temp = 6600, temp_step = 100,
-                   f_step = (noon_temp - dd_temp) / temp_step, m_step = 74;
+                   f_step = (noon_temp - dd_temp) / temp_step, m_step = 74,
+                   n_step = m_step == 0 || f_step < m_step ? f_step : m_step;
 
     unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
-             n_step = m_step == 0 || f_step < m_step ? f_step : m_step,
              ttslp = (noon - dawn) / n_step;
 
     for ( unsigned short t = dd_temp; t <= noon_temp; t += temp_step ) {
