@@ -61,19 +61,21 @@ colortemp_daemon (void) {
                    f_step = (noon_temp - dd_temp) / temp_step, m_step = 74,
                    n_step = m_step == 0 || f_step < m_step ? f_step : m_step;
 
-    unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
-             ttslp = (noon - dawn) / n_step;
+    while ( true ) {
+        unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
+                 ttslp = (noon - dawn) / n_step;
 
-    for ( unsigned short t = dd_temp; t <= noon_temp; t += temp_step ) {
-        colortemp_set(t);
-        syslog(LOG_INFO, "Set color temperature to %hu\n", t);
-        sleep(ttslp);
-    }
+        for ( unsigned short t = dd_temp; t <= noon_temp; t += temp_step ) {
+            colortemp_set(t);
+            syslog(LOG_INFO, "Set color temperature to %hu\n", t);
+            sleep(ttslp);
+        }
 
-    for ( unsigned short t = noon_temp; t >= dd_temp; t -= temp_step ) {
-        colortemp_set(t);
-        syslog(LOG_INFO, "Set color temperature to %hu\n", t);
-        sleep(ttslp);
+        for ( unsigned short t = noon_temp; t >= dd_temp; t -= temp_step ) {
+            colortemp_set(t);
+            syslog(LOG_INFO, "Set color temperature to %hu\n", t);
+            sleep(ttslp);
+        }
     }
 
     syslog(LOG_INFO, "Shutting down\n");
