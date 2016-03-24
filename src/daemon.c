@@ -61,7 +61,7 @@ colortemp_daemon (void) {
                    f_step = (noon_temp - dd_temp) / temp_step, m_step = 74,
                    n_step = m_step == 0 || f_step < m_step ? f_step : m_step;
 
-    while ( true ) {
+    while ( 1 ) {
         unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
                  ttslp = (noon - dawn) / n_step;
 
