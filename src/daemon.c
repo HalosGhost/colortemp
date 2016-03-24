@@ -65,17 +65,22 @@ colortemp_daemon (void) {
         unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
                  ttslp = (noon - dawn) / n_step;
 
-        for ( unsigned short t = dd_temp; t <= noon_temp; t += temp_step ) {
+        unsigned short t = 1000;
+        colortemp_set(t);
+
+        for ( ; t <= noon_temp; t += temp_step ) {
             colortemp_set(t);
             syslog(LOG_INFO, "Set color temperature to %hu\n", t);
             sleep(ttslp);
         }
 
-        for ( unsigned short t = noon_temp; t >= dd_temp; t -= temp_step ) {
+        for ( ; t >= dd_temp; t -= temp_step ) {
             colortemp_set(t);
             syslog(LOG_INFO, "Set color temperature to %hu\n", t);
             sleep(ttslp);
         }
+
+        colortemp_set(1000);
     }
 
     syslog(LOG_INFO, "Shutting down\n");
