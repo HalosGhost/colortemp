@@ -68,7 +68,7 @@ colortemp_daemon (void) {
         unsigned short t = 1000;
         colortemp_set(t);
 
-        for ( ; t <= noon_temp; t += temp_step ) {
+        for ( t = 1900; t <= noon_temp; t += temp_step ) {
             colortemp_set(t);
             syslog(LOG_INFO, "Set color temperature to %hu\n", t);
             sleep(ttslp);
