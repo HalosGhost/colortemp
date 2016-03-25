@@ -91,6 +91,12 @@ colortemp_daemon (void) {
             syslog(LOG_INFO, "Set color temperature to %hu\n", t);
             sleep(ttslp);
         }
+
+        time(&current);
+        ct = localtime(&current);
+
+        curseconds = ct->tm_hour * 3600 + ct->tm_min * 60 + ct->tm_sec;
+        sleep((unsigned )((25 * 3600) - curseconds));
     }
 
     syslog(LOG_INFO, "Shutting down\n");
