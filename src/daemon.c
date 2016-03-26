@@ -75,12 +75,16 @@ colortemp_daemon (void) {
         signed curseconds = ct->tm_hour * 3600 + ct->tm_min * 60 + ct->tm_sec,
                time_to_dawn = (signed )dawn - curseconds;
 
-        if ( time_to_dawn > 0 ) {
+        if ( time_to_dawn >= 0 ) {
             syslog(LOG_INFO, "Dawn is in %d seconds; sleeping till then\n", time_to_dawn);
             sleep((unsigned )time_to_dawn);
+            t = dd_temp;
+        } else {
+            unsigned steps_to_skip = ((unsigned )(-time_to_dawn)) / (unsigned )ttslp;
+            t = ((unsigned short )steps_to_skip * temp_step) + dd_temp;
         }
 
-        for ( t = 1900; t <= noon_temp; t += temp_step ) {
+        for ( ; t <= noon_temp; t += temp_step ) {
             colortemp_set(t);
             syslog(LOG_INFO, "Set color temperature to %hu\n", t);
             sleep(ttslp);
