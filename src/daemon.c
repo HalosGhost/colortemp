@@ -90,7 +90,7 @@ colortemp_daemon (void) {
             sleep(ttslp);
         }
 
-        for ( ; t >= dd_temp; t -= temp_step ) {
+        for ( t = noon_temp; t >= dd_temp; t -= temp_step ) {
             colortemp_set(t);
             syslog(LOG_INFO, "Set color temperature to %hu\n", t);
             sleep(ttslp);
