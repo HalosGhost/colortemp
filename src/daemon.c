@@ -100,6 +100,7 @@ colortemp_daemon (void) {
         ct = localtime(&current);
 
         curseconds = ct->tm_hour * 3600 + ct->tm_min * 60 + ct->tm_sec;
+        syslog(LOG_INFO, "Sleeping for %u seconds\n", (unsigned )((25 * 3600) - curseconds));
         sleep((unsigned )((25 * 3600) - curseconds));
     }
 
