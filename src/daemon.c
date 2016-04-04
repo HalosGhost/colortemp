@@ -96,6 +96,9 @@ colortemp_daemon (void) {
             sleep(ttslp);
         }
 
+        t = 1000;
+        colortemp_set(t);
+
         time(&current);
         ct = localtime(&current);
 
