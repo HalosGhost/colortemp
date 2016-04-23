@@ -1,3 +1,4 @@
+PROGNM =  colortempd
 PREFIX ?= /usr/local
 ZSHDIR ?= $(DESTDIR)$(PREFIX)/share/zsh
 BINDIR ?= $(DESTDIR)$(PREFIX)/bin
@@ -9,13 +10,13 @@ all:
 	@tup upd
 
 clean:
-	@rm -rf -- dist cov-int colortemp.tgz make.sh
+	@rm -rf -- dist cov-int $(PROGNM).tgz make.sh
 
 cov-build: clean
 	@tup generate make.sh
 	@mkdir -p ./dist
 	@cov-build --dir cov-int ./make.sh
-	@tar czvf colortemp.tgz cov-int
+	@tar czvf $(PROGNM).tgz cov-int
 
 install:
 	@install -Dm755 dist/colortempd $(BINDIR)/colortempd
