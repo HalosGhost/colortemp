@@ -98,7 +98,7 @@ colortemp_daemon (void) {
 
         t = 1000;
         colortemp_set(t);
-        sysloc(LOG_INFO, "Set color temperature to 1000\n");
+        syslog(LOG_INFO, "Set color temperature to 1000\n");
 
         time(&current);
         ct = localtime(&current);
