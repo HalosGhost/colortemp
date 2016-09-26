@@ -62,7 +62,7 @@ colortemp_daemon (void) {
                    n_step = m_step == 0 || f_step < m_step ? f_step : m_step;
 
     while ( 1 ) {
-        unsigned dawn = 25624, dusk = 70233, noon = (dawn + dusk) / 2,
+        unsigned dawn = 23427, dusk = 71749, noon = (dawn + dusk) / 2,
                  ttslp = (noon - dawn) / n_step;
 
         unsigned short t = 1000;
@@ -98,6 +98,7 @@ colortemp_daemon (void) {
 
         t = 1000;
         colortemp_set(t);
+        sysloc(LOG_INFO, "Set color temperature to 1000\n");
 
         time(&current);
         ct = localtime(&current);
@@ -111,3 +112,4 @@ colortemp_daemon (void) {
     closelog();
     return EXIT_SUCCESS;
 }
+
