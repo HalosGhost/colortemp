@@ -49,6 +49,8 @@ colortemp_set (unsigned short temp) {
     XRRScreenResources * res = XRRGetScreenResourcesCurrent(dpy, root);
     struct RGB rgb = getRGBfromTemp(temp);
 
+    double gr = rgb.r / 255.0, gg = rgb.g / 255.0, gb = rgb.b / 255.0;
+
     for ( signed c = 0; c < res->ncrtc; ++ c ) {
         RRCrtc crtcxid = res->crtcs[c];
         signed size = XRRGetCrtcGammaSize(dpy, crtcxid);
@@ -56,9 +58,9 @@ colortemp_set (unsigned short temp) {
 
         for ( signed i = 0; i < size; ++ i ) {
             double g = 65535.0 * i / size;
-            crtc_gamma->red[i]   = (unsigned short )(g * (rgb.r / 255.0));
-            crtc_gamma->green[i] = (unsigned short )(g * (rgb.g / 255.0));
-            crtc_gamma->blue[i]  = (unsigned short )(g * (rgb.b / 255.0));
+            crtc_gamma->red[i]   = (unsigned short )(g * gr);
+            crtc_gamma->green[i] = (unsigned short )(g * gg);
+            crtc_gamma->blue[i]  = (unsigned short )(g * gb);
         } XRRSetCrtcGamma(dpy, crtcxid, crtc_gamma); XFree(crtc_gamma);
     } XCloseDisplay(dpy);
 }
