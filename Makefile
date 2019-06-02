@@ -2,6 +2,7 @@ PROGNM =  colortempd
 PREFIX ?= /usr/local
 ZSHDIR ?= $(DESTDIR)$(PREFIX)/share/zsh
 BINDIR ?= $(DESTDIR)$(PREFIX)/bin
+MKDIR  ?= mkdir -p
 
 .PHONY: all clean gen clang-analyze cov-build simple install uninstall
 
@@ -12,7 +13,7 @@ clean:
 	@rm -rf -- dist cov-int $(PROGNM).tgz make.sh ./src/*.plist
 
 dist:
-	@mkdir -p ./dist
+	@$(MKDIR) ./dist
 
 gen: clean
 	@tup generate make.sh
