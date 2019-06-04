@@ -4,13 +4,16 @@ ZSHDIR ?= $(DESTDIR)$(PREFIX)/share/zsh
 BINDIR ?= $(DESTDIR)$(PREFIX)/bin
 MKDIR  ?= mkdir -p
 
-.PHONY: all clean gen clang-analyze cov-build simple install uninstall
+.PHONY: all complexity clean gen clang-analyze cov-build simple install uninstall
 
 all: dist
 	@tup upd
 
 clean:
 	@rm -rf -- dist cov-int $(PROGNM).tgz make.sh ./src/*.plist
+
+complexity:
+	complexity -h ./src/*
 
 dist:
 	@$(MKDIR) ./dist
