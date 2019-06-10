@@ -10,7 +10,7 @@ arch=('i686' 'x86_64')
 license=('GPL3')
 
 depends=('xorg-server' 'libxrandr')
-makedepends=('git' 'tup' 'clang')
+makedepends=('git' 'clang')
 
 source=('git+https://github.com/HalosGhost/colortemp.git')
 sha256sums=('SKIP')
