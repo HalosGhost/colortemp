@@ -4,10 +4,12 @@ ZSHDIR ?= $(DESTDIR)$(PREFIX)/share/zsh
 BINDIR ?= $(DESTDIR)$(PREFIX)/bin
 MKDIR  ?= mkdir -p
 
-.PHONY: all complexity clean gen clang-analyze cov-build simple install uninstall
+include Makerules
+
+.PHONY: all complexity clean clang-analyze cov-build install uninstall
 
 all: dist
-	@tup upd
+	$(CC) $(CFLAGS) $(LDFLAGS) ./src/*.c -o ./dist/$(PROGNM)
 
 clean:
 	@rm -rf -- dist cov-int $(PROGNM).tgz make.sh ./src/*.plist
@@ -18,18 +20,12 @@ complexity:
 dist:
 	@$(MKDIR) ./dist
 
-gen: clean
-	@tup generate make.sh
-
 cov-build: gen dist
 	@cov-build --dir cov-int ./make.sh
 	@tar czvf $(PROGNM).tgz cov-int
 
 clang-analyze:
 	@(pushd ./src; clang-check -analyze ./*.c)
-
-simple: gen dist
-	@./make.sh
 
 install:
 	@install -Dm755 dist/$(PROGNM) $(BINDIR)/$(PROGNM)
